@@ -1,0 +1,615 @@
+[gd_scene load_steps=30 format=3 uid="uid://psfdt7gyx7al"]
+
+[ext_resource type="Texture2D" uid="uid://4yy6fhjtsthv" path="res://backgrounds/industrialgrunge.jpg" id="1_tipki"]
+[ext_resource type="Theme" uid="uid://cmxfmrxqo3t72" path="res://themes/main_ui_theme.tres" id="2_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bhp0gyuv8lmbg" path="res://portraits/mechatha portrait.png" id="3_choun"]
+[ext_resource type="Script" uid="uid://dwff2rckc53iv" path="res://scripts/board.gd" id="3_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://db8e5prvgvqm6" path="res://objects/board_space.tscn" id="4_trceg"]
+[ext_resource type="Texture2D" uid="uid://bg7jfs3vjolax" path="res://mockup/choices.png" id="4_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://ciy27yvscggd6" path="res://mockup/dialogue.png" id="5_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://hubufiq6shs1" path="res://mockup/scrabble.png" id="6_trceg"]
+[ext_resource type="Texture2D" uid="uid://cl74dntg6pxwc" path="res://textures/cielspinstripe.png" id="7_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://dks72078jfybn" path="res://textures/heart.png" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://c2tyixy88nmqm" path="res://headshots/mechatha headshot.png" id="8_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://d204718dgcwwi" path="res://textures/heart_padding.png" id="9_choun"]
+[ext_resource type="Texture2D" uid="uid://wicyvq3742yr" path="res://textures/lenaspinstripe.png" id="11_ya4ey"]
+
+[sub_resource type="Gradient" id="Gradient_jbj1t"]
+colors = PackedColorArray(0.241156, 0.241156, 0.241156, 1, 0.43134, 0.43134, 0.43134, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_muem4"]
+gradient = SubResource("Gradient_jbj1t")
+
+[sub_resource type="Gradient" id="Gradient_choun"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.301961, 0.301961, 0.301961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ya4ey"]
+gradient = SubResource("Gradient_choun")
+width = 180
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+bg_color = Color(0.0237408, 0.323314, 0.572212, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.0776786, 0.622212, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.564574, 0.139966, 0.216398, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.941842, 0.397285, 0.426393, 1)
+
+[sub_resource type="Gradient" id="Gradient_eb6dy"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.470076, 0.470076, 0.470076, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_trceg"]
+gradient = SubResource("Gradient_eb6dy")
+width = 180
+
+[sub_resource type="Gradient" id="Gradient_gqmmt"]
+colors = PackedColorArray(0, 0, 0, 1, 0.344076, 0.344076, 0.344076, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yc10j"]
+gradient = SubResource("Gradient_gqmmt")
+width = 180
+
+[sub_resource type="Gradient" id="Gradient_ya4ey"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.395437, 0.540163, 0.89616, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eb6dy"]
+gradient = SubResource("Gradient_ya4ey")
+width = 360
+
+[sub_resource type="Shader" id="Shader_dp3eg"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+shader = SubResource("Shader_dp3eg")
+
+[node name="Control" type="Control"]
+texture_filter = 1
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tipki")
+expand_mode = 1
+
+[node name="HangoutMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="HangoutMenu"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 226.0
+offset_right = 1196.0
+offset_bottom = 672.0
+theme = ExtResource("2_85g3d")
+columns = 3
+
+[node name="Button" type="Button" parent="HangoutMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Talk"
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="HangoutMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "ask on date"
+
+[node name="Button3" type="Button" parent="HangoutMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "inventory"
+
+[node name="Button4" type="Button" parent="HangoutMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ditch"
+
+[node name="Button5" type="Button" parent="HangoutMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "id"
+
+[node name="Button6" type="Button" parent="HangoutMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "shop"
+
+[node name="DialogueMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_85g3d")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="DialogueMenu"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -710.0
+offset_top = -484.0
+offset_right = 341.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Option1" type="Button" parent="DialogueMenu/OptionsContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "option 1"
+autowrap_mode = 2
+clip_text = true
+
+[node name="Option2" type="Button" parent="DialogueMenu/OptionsContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "option 2"
+
+[node name="Option3" type="Button" parent="DialogueMenu/OptionsContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "jam your tongue down her throat"
+
+[node name="ScrabbleMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_eb6dy")
+space_src = ExtResource("4_trceg")
+
+[node name="Board" type="TextureRect" parent="ScrabbleMenu"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -460.0
+offset_right = 240.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoardMargins" type="MarginContainer" parent="ScrabbleMenu/Board"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoardGrid" type="GridContainer" parent="ScrabbleMenu/Board/BoardMargins"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 15
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 42.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture1D_muem4")
+
+[node name="ClockButtonsContainer" type="HBoxContainer" parent="Background2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TheOtherDateButton" type="Button" parent="Background2/ClockButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Date"
+
+[node name="TimeButton" type="Button" parent="Background2/ClockButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time of Day"
+
+[node name="VSeparator" type="Control" parent="Background2/ClockButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PhoneButton" type="Button" parent="Background2/ClockButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Phone"
+
+[node name="MoneyButton" type="Button" parent="Background2/ClockButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Money"
+
+[node name="StatusBar" type="Control" parent="."]
+z_as_relative = false
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PinstripeBackground" type="TextureRect" parent="StatusBar"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_a8y0u")
+stretch_mode = 1
+
+[node name="StatusItemsContainer" type="HBoxContainer" parent="StatusBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Hearts" type="Control" parent="StatusBar/StatusItemsContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 180.0
+texture = SubResource("GradientTexture1D_ya4ey")
+
+[node name="Margin" type="MarginContainer" parent="StatusBar/StatusItemsContainer/Hearts/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hearts" type="Control" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin"]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin/Hearts"]
+self_modulate = Color(0.898039, 0.317647, 0.509804, 1)
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 80.0
+texture = ExtResource("9_choun")
+expand_mode = 1
+
+[node name="Heart2" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin/Hearts"]
+self_modulate = Color(0.897634, 0.317193, 0.510717, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_bottom = 80.0
+grow_horizontal = 0
+texture = ExtResource("9_choun")
+expand_mode = 1
+
+[node name="Heart3" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin/Hearts"]
+self_modulate = Color(0.619608, 0.145098, 0.321569, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_right = 80.0
+grow_vertical = 0
+texture = ExtResource("9_choun")
+expand_mode = 1
+
+[node name="Heart4" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin/Hearts"]
+self_modulate = Color(0.619608, 0.145098, 0.321569, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("9_choun")
+expand_mode = 1
+
+[node name="Heart5Outline" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin/Hearts"]
+self_modulate = Color(0.301961, 0.301961, 0.301961, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_85g3d")
+expand_mode = 1
+
+[node name="Heart5" type="TextureRect" parent="StatusBar/StatusItemsContainer/Hearts/Background/Margin/Hearts"]
+self_modulate = Color(0.619608, 0.145098, 0.321569, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_85g3d")
+expand_mode = 1
+
+[node name="Needs" type="HBoxContainer" parent="StatusBar/StatusItemsContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="Thirst" type="ProgressBar" parent="StatusBar/StatusItemsContainer/Needs"]
+custom_minimum_size = Vector2(90, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
+theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
+value = 59.47
+fill_mode = 3
+show_percentage = false
+
+[node name="ThirstLabel" type="Label" parent="StatusBar/StatusItemsContainer/Needs/Thirst"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Thirst"
+horizontal_alignment = 1
+
+[node name="Hunger" type="ProgressBar" parent="StatusBar/StatusItemsContainer/Needs"]
+custom_minimum_size = Vector2(90, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_choun")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ya4ey")
+value = 30.15
+fill_mode = 3
+show_percentage = false
+
+[node name="HungerLabel" type="Label" parent="StatusBar/StatusItemsContainer/Needs/Hunger"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Hunger"
+horizontal_alignment = 1
+
+[node name="CharacterInfo" type="TextureRect" parent="StatusBar/StatusItemsContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_trceg")
+
+[node name="Headshot" type="TextureRect" parent="StatusBar/StatusItemsContainer/CharacterInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_jkv2x")
+stretch_mode = 4
+
+[node name="NameShadow" type="TextureRect" parent="StatusBar/StatusItemsContainer/CharacterInfo"]
+self_modulate = Color(1, 1, 1, 0.705882)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture1D_yc10j")
+
+[node name="Name" type="Label" parent="StatusBar/StatusItemsContainer/CharacterInfo/NameShadow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_85g3d")
+text = "Mechatha"
+horizontal_alignment = 1
+
+[node name="EquippedItems" type="TextureRect" parent="StatusBar/StatusItemsContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_eb6dy")
+
+[node name="Label" type="Label" parent="StatusBar/StatusItemsContainer/EquippedItems"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "equipped items"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Character" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -503.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Portrait" type="TextureRect" parent="Character"]
+z_index = -1
+z_as_relative = false
+material = SubResource("ShaderMaterial_0ld40")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -469.0
+offset_top = -788.0
+offset_right = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_choun")
+
+[node name="DialogueBox" type="TextureRect" parent="Character"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -330.0
+offset_right = -123.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_85g3d")
+texture = ExtResource("11_ya4ey")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Character/DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/DialogueBox/MarginContainer"]
+layout_mode = 2
+text = "hello !!!! omg hiiii hello :333"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mockups" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Choices" type="TextureRect" parent="Mockups"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_ya4ey")
+
+[node name="Dialogue" type="TextureRect" parent="Mockups"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_eb6dy")
+
+[node name="Scrabble" type="TextureRect" parent="Mockups"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_trceg")

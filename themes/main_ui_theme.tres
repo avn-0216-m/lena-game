@@ -1,0 +1,44 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cmxfmrxqo3t72"]
+
+[ext_resource type="Texture2D" uid="uid://wicyvq3742yr" path="res://textures/lenaspinstripe.png" id="1_cmw45"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ff4w"]
+texture = ExtResource("1_cmw45")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.581033, 0.581033, 0.581033, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8i7n5"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("1_cmw45")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxoeu"]
+texture = ExtResource("1_cmw45")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.270222, 0.270222, 0.270222, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmw45"]
+texture = ExtResource("1_cmw45")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wiv3p"]
+texture = ExtResource("1_cmw45")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+Button/font_sizes/font_size = 64
+Button/styles/hover = SubResource("StyleBoxTexture_6ff4w")
+Button/styles/normal = SubResource("StyleBoxTexture_8i7n5")
+Button/styles/pressed = SubResource("StyleBoxTexture_vxoeu")
+Label/font_sizes/font_size = 20
+RichTextLabel/font_sizes/normal_font_size = 20
+RichTextLabel/styles/background = SubResource("StyleBoxTexture_cmw45")
+RichTextLabel/styles/fill = SubResource("StyleBoxTexture_wiv3p")

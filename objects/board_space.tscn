@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://db8e5prvgvqm6"]
+
+[sub_resource type="Gradient" id="Gradient_2ssif"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.473899, 0.506185, 0.538595, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_80knf"]
+gradient = SubResource("Gradient_2ssif")
+width = 36
+
+[node name="BoardSpace" type="TextureRect"]
+custom_minimum_size = Vector2(36, 36)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture1D_80knf")
