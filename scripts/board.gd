@@ -1,7 +1,8 @@
 extends Control
 
 @export var space_src: PackedScene
-const number_of_columns = 15
+
+@onready var board_grid = get_node("VBoxContainer/AspectRatioContainer/BoardGrid")
 
 func _ready():
 	spawn_scrabble_board()
@@ -12,4 +13,4 @@ func spawn_scrabble_board():
 		return
 	for i in range(0,225):
 		var space_obj = space_src.instantiate()
-		$Board/BoardMargins/BoardGrid.add_child(space_obj)
+		board_grid.add_child(space_obj)

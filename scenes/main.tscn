@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://psfdt7gyx7al"]
+[gd_scene load_steps=32 format=3 uid="uid://psfdt7gyx7al"]
 
 [ext_resource type="Texture2D" uid="uid://4yy6fhjtsthv" path="res://backgrounds/industrialgrunge.jpg" id="1_tipki"]
 [ext_resource type="Theme" uid="uid://cmxfmrxqo3t72" path="res://themes/main_ui_theme.tres" id="2_85g3d"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://db8e5prvgvqm6" path="res://objects/board_space.tscn" id="4_trceg"]
 [ext_resource type="Texture2D" uid="uid://bg7jfs3vjolax" path="res://mockup/choices.png" id="4_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://ciy27yvscggd6" path="res://mockup/dialogue.png" id="5_eb6dy"]
+[ext_resource type="Script" uid="uid://yhqdguso07xx" path="res://scripts/tiles.gd" id="6_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://hubufiq6shs1" path="res://mockup/scrabble.png" id="6_trceg"]
 [ext_resource type="Texture2D" uid="uid://cl74dntg6pxwc" path="res://textures/cielspinstripe.png" id="7_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://c1qxntcx8apbu" path="res://objects/tile.tscn" id="7_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://dks72078jfybn" path="res://textures/heart.png" id="8_85g3d"]
 [ext_resource type="Texture2D" uid="uid://c2tyixy88nmqm" path="res://headshots/mechatha headshot.png" id="8_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://d204718dgcwwi" path="res://textures/heart_padding.png" id="9_choun"]
@@ -213,35 +215,67 @@ grow_vertical = 2
 script = ExtResource("3_eb6dy")
 space_src = ExtResource("4_trceg")
 
-[node name="Board" type="TextureRect" parent="ScrabbleMenu"]
-custom_minimum_size = Vector2(100, 100)
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrabbleMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = -460.0
-offset_right = 240.0
-offset_bottom = 340.0
+offset_left = -583.0
+offset_top = -452.0
+offset_right = 239.0
+offset_bottom = 242.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="BoardMargins" type="MarginContainer" parent="ScrabbleMenu/Board"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="ScrabbleMenu/VBoxContainer"]
 clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
 
-[node name="BoardGrid" type="GridContainer" parent="ScrabbleMenu/Board/BoardMargins"]
+[node name="BoardBG" type="TextureRect" parent="ScrabbleMenu/VBoxContainer/AspectRatioContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("11_ya4ey")
+stretch_mode = 1
+
+[node name="BoardGrid" type="GridContainer" parent="ScrabbleMenu/VBoxContainer/AspectRatioContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 15
+
+[node name="Info" type="HBoxContainer" parent="ScrabbleMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Tiles" type="HBoxContainer" parent="ScrabbleMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.95
+alignment = 1
+script = ExtResource("6_jkv2x")
+tile_src = ExtResource("7_jbj1t")
+
+[node name="Discard" type="Button" parent="ScrabbleMenu/VBoxContainer/Tiles"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Discard"
+
+[node name="Hand" type="HBoxContainer" parent="ScrabbleMenu/VBoxContainer/Tiles"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="LetterBag" type="Button" parent="ScrabbleMenu/VBoxContainer/Tiles"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Letter"
 
 [node name="Background2" type="TextureRect" parent="."]
 layout_mode = 1
@@ -579,7 +613,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Character/DialogueBox/MarginContainer"]
 layout_mode = 2
-text = "hello !!!! omg hiiii hello :333"
+text = "the jonestown massacre"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1

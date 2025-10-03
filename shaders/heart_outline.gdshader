@@ -17,7 +17,7 @@ void fragment()
             texture(TEXTURE, UV + vec2(-outLineSize, outLineSize)).a  != 0.0 ||
             texture(TEXTURE, UV + vec2(-outLineSize, -outLineSize)).a != 0.0 ||
             texture(TEXTURE, UV + vec2(outLineSize,  outLineSize)).a  != 0.0 ||
-            texture(TEXTURE, UV + vec2(outLineSize,  -outLineSize)).a != 0.0) 
+            texture(TEXTURE, UV + vec2(outLineSize,  -outLineSize)).a != 0.0)
             tcol = outLineColor;
     }
 
